@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 from freenect import sync_get_depth as get_depth, sync_get_video as get_video
-import cv  
+import cv2
 import numpy as np
+import frame_convert
   
 def doloop():
     global depth, rgb
@@ -14,8 +15,8 @@ def doloop():
         da = np.hstack((d3,rgb))
         
         # Simple Downsample
-        cv.ShowImage('both',np.array(da[::2,::2,::-1]))
-        cv.WaitKey(5)
+        cv2.imshow('both',np.array(da[::2,::2,::-1]))
+        cv2.waitKey(5)
         
 doloop()
 
